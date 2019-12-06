@@ -2,3 +2,12 @@
 ---
 
 You can get this book directly from https://www.manning.com/books/elm-in-action
+
+## Notes
+
+- Chapter 1 is essentially all in the REPL sorry!
+
+## Questions
+
+- Does `elm make ... --optimize` make a large difference in a larger
+  application?
