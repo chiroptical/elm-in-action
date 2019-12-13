@@ -5,9 +5,15 @@ module PhotoGroove exposing (main)
 -- ER produces a Msg which triggers the `update`
 -- function. `update` modifies the `Model`
 -- `view` takes the Model and produces Html
+-- Handling Events
+-- ---
+-- Click Event -> Elm Runtime -> Msg -> update
+-- Interpret Msg, update view and model
 
+import Browser
 import Html exposing (div, h1, img, text)
-import Html.Attributes exposing (class, id, src, classList)
+import Html.Attributes exposing (class, classList, id, src)
+import Html.Events exposing (onClick)
 
 
 initialModel =
@@ -25,7 +31,6 @@ viewThumbnail selectedUrl thumb =
         -- (src ("http://elm-in-action.com/" ++ thumb.url)
         --     :: (if selectedUrl == thumb.url then
         --             [ class "selected" ]
-
         --         else
         --             []
         --        )
@@ -33,6 +38,7 @@ viewThumbnail selectedUrl thumb =
         -- is equivalent to:
         [ src ("http://elm-in-action.com/" ++ thumb.url)
         , classList [ ( "selected", selectedUrl == thumb.url ) ]
+        , onClick { description = "ClickedPhoto", data = thumb.url }
         ]
         []
 
@@ -43,12 +49,22 @@ view model =
         , div [ id "thumbnails" ]
             (List.map (viewThumbnail model.selectedUrl) model.photos)
         , img
-          [ class "large"
-          , src ("http://elm-in-action.com/large/" ++ model.selectedUrl)
-          ]
-          []
+            [ class "large"
+            , src ("http://elm-in-action.com/large/" ++ model.selectedUrl)
+            ]
+            []
         ]
 
 
+update msg model =
+    case msg.description of
+       "ClickedPhoto" -> { model | selectedUrl = msg.data }
+       _ -> model
+
+
 main =
-    view initialModel
+    Browser.sandbox
+        { init = initialModel
+        , view = view
+        , update = update
+        }
