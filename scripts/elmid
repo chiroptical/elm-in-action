@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 2 ]; then
+  echo "Usage: elmid {input:src/Main.elm} {output:elm.js}"
+  exit 1
+fi
+
+while inotifywait -e close_write $1; do
+  elm make $1 --output=$2
+done
