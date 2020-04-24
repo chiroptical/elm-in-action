@@ -235,7 +235,7 @@ update msg model =
             applyFilters { model | status = selectUrl photo.url model.status }
 
         GotPhotos (Ok ((first :: _) as photos)) ->
-            ( { model | status = Loaded photos first.url }, Cmd.none )
+            applyFilters { model | status = Loaded photos first.url }
 
         GotPhotos (Ok []) ->
             ( { model | status = Errored "Server didn't return any photos?" }, Cmd.none )
