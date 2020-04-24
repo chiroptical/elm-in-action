@@ -17,9 +17,5 @@ elm-live src/PhotoGroove.elm --open --start-page=index.html -- --output-elm.js
 
 - Does `elm make ... --optimize` make a large difference in a larger
   application?
-
-## Launch using `elm-live`
-
-```elm
-elm-live src/PhotoGroove.elm --open --start-page=index.html -- --output=elm.js
-```
+- For range sliders, can we only update after releasing the mouse to avoid
+  lag when dragging quickly
