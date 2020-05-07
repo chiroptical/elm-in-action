@@ -10,7 +10,7 @@ You can get this book directly from https://www.manning.com/books/elm-in-action
 ## elm-live
 
 ```console
-elm-live src/PhotoGroove.elm --open --start-page=index.html -- --output-elm.js
+elm-live src/PhotoGroove.elm --open --start-page=index.html -- --output=elm.js
 ```
 
 ## Questions
