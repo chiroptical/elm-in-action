@@ -9,11 +9,25 @@ You can get this book directly from https://www.manning.com/books/elm-in-action.
 
 - Chapter 1 is essentially all in the REPL sorry!
 
-## elm-live
+## Running The Application
+
+- If anything before chapter 7, can use:
 
 ```console
 elm-live src/PhotoGroove.elm --open --start-page=index.html -- --output=elm.js
 ```
+
+- Else:
+
+```console
+http-server-spa .
+```
+
+## Chapter 7 Notes
+
+Chapter 7 and 8 were combined into a single application in `chapter7/` folder.
+This was just the order in which I wanted to work through the book. You could
+split the chapter into two if you so choose.
 
 ## Questions
 

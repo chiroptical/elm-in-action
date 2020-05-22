@@ -1,4 +1,4 @@
-var app = Elm.PhotoGroove.init({
+var app = Elm.Main.init({
   node: document.getElementById("app"),
   flags: Pasta.version
 });
@@ -10,6 +10,5 @@ app.ports.setFilters.subscribe(function(options) {
 });
 
 Pasta.addActivityListener(function(activity) {
-  // console.log("Got some activity to send to Elm...", activity);
   app.ports.activityChanges.send(activity);
 });
