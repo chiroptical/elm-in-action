@@ -1,6 +1,5 @@
-port module PhotoGroove exposing (..)
+port module PhotoGallery exposing (Model, Msg, init, subscriptions, update, view)
 
-import Browser
 import Html exposing (..)
 import Html.Attributes as Attrs exposing (..)
 import Html.Events exposing (on, onClick)
@@ -8,7 +7,7 @@ import Http
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Pipeline as Pipeline
 import Json.Encode as Encode
-import Random exposing (..)
+import Random as Random exposing (uniform, generate)
 
 
 type alias Photo =
@@ -116,7 +115,6 @@ rangeSlider =
     node "range-slider"
 
 
-
 onSlide : (Int -> msg) -> Attribute msg
 onSlide toMsg =
     Decode.at [ "detail", "userSlidTo" ] Decode.int
@@ -159,8 +157,7 @@ urlPrefix =
 
 viewLoaded : List Photo -> String -> Model -> List (Html Msg)
 viewLoaded photos selectedUrl model =
-    [ h1 [] [ text "Photo Grove" ]
-    , button
+    [ button
         [ onClick ClickSuprise ]
         [ text "Suprise me!" ]
     , div [ class "activity" ] [ text model.activity ]
@@ -299,13 +296,3 @@ init version =
             "Initializing Pasta v" ++ String.fromFloat version
     in
     ( { initialModel | activity = activity }, initialCmd )
-
-
-main : Program Float Model Msg
-main =
-    Browser.element
-        { init = init
-        , view = view
-        , update = update
-        , subscriptions = subscriptions
-        }
